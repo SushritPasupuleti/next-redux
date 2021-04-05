@@ -17,6 +17,6 @@ export const postReducer = (state = initialState, action) => {
                 error: null
             }
         default:
-            return false;
+            return state;
     }
 }
