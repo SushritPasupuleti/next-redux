@@ -1,12 +1,13 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../redux/actions/postActions';
 import { useEffect } from 'react';
 
 export default function Home() {
 
   const dispatch = useDispatch();
+  const {posts} = useSelector(state=>state.posts);
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -23,6 +24,11 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+
+        {posts && posts.map(post=> (
+          <h3 key={post}>{post}</h3>
+        ))}
+
       </main>
     </div>
   )
